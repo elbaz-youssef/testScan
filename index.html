@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -9,6 +9,50 @@
     <h2>Live Barcode Scanner</h2>
     <div id="reader" style="width: 600px; height: 400px;"></div>
     <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
+
     <script src="main.js"></script>
 </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Barcode Scanner</title>
+  <script src="https://cdn.jsdelivr.net/npm/quagga@0.12.1/dist/quagga.min.js"></script>
+</head>
+<body>
+  <div id="scanner-container"></div>
+  <div id="result"></div>
+
+  <script>
+    Quagga.init({
+      inputStream: {
+        type: 'LiveStream',
+        target: document.querySelector('#scanner-container'),
+        constraints: {
+          facingMode: 'environment'
+        }
+      },
+      decoder: {
+        readers: ['code_128_reader', 'ean_reader', 'ean_8_reader', 'upc_reader']
+      }
+    }, function(err) {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      console.log('Initialization succeeded.');
+      Quagga.start();
+    });
+
+    Quagga.onDetected(function(result) {
+      document.getElementById('result').innerText = `Scanned Code: ${result.codeResult.code}`;
+      Quagga.stop(); // Optionally stop after detecting a code
+    });
+  </script>
+</body>
 </html>
+

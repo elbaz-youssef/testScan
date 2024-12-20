@@ -1,3 +1,5 @@
+console.log("hello world");
+
 const qrCodeRegionId = "reader";
     
 const handleScanSuccess = (decodedText) => {
