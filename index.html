@@ -28,6 +28,9 @@
   <button id="scan-btn">Start Scan</button>
 
   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      navigator.mediaDevices.getUserMedia({video: true});
+    })
     console.log("hello world!");
     let scanner; // Reference for the scanner object
     const qrReader = document.getElementById("qr-reader");
