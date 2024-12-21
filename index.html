@@ -49,17 +49,19 @@
 
     // Start the scanner when the button is clicked
     scanButton.addEventListener("click", () => {
-      if (resultDiv.style.display === "block") {
-        // If a result was found, restart the scan
-        resultDiv.style.display = "none"; // Hide result
-        startScan(); // Restart scanning
-      } else {
-        startScan(); // Start scanning if no result yet
-      }
+      startScan();
+      // if (resultDiv.style.display === "block") {
+      //   // If a result was found, restart the scan
+      //   resultDiv.style.display = "none"; // Hide result
+      //   startScan(); // Restart scanning
+      // } else {
+      //   startScan(); // Start scanning if no result yet
+      // }
     });
 
     // Function to initialize the scanner
     function startScan() {
+      alert("this function it's work");
       scanner = new Html5QrcodeScanner(
         qrReader, 
         {
